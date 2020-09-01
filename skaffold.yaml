@@ -1,0 +1,19 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false   # Don't automatically push images to Docker Hub after they've been built
+  artifacts:
+    - image: ejun3227/auth
+      context: auth   # The folder that contains the application code for the image
+      docker:
+        dockerfile: Dockerfile
+      # Tells Skaffold how to hanlde any files that change, in this case we want Skaffold to watch all the files that end with '.ts' in the src directory
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .   # Where to sync the changed files in the running container. In this case whereever the file was found in.
