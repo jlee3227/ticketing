@@ -16,3 +16,7 @@ spec:
               # This service name and port comes from the service you created
               serviceName: auth-srv   
               servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: client-srv
+              servicePort: 3000
