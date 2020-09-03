@@ -17,3 +17,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .   # Where to sync the changed files in the running container. In this case whereever the file was found in.
+    - image: ejun3227/client
+      context: client 
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
