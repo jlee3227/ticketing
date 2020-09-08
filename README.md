@@ -15,3 +15,8 @@ A StubHub clone to learn and understand microservice architecture. Built with:
 To run the application locally:
 * Change directories to the root of the project
 * run `skaffold dev` in your terminal
+
+## Future Improvements
+* Add refresh tokens to authentication
+* Add database transactions
+    * Along with whatever we are saving to the database of the service, we want to save the event being published and wrap both in a database transaction
