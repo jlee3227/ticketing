@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Order, OrderStatus } from './order';
 
 interface TicketAttrs {
+    id: string;
     title: string;
     price: number;
     // version: number;
@@ -41,7 +42,11 @@ const ticketSchema = new mongoose.Schema(
 );
 
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-    return new Ticket(attrs);
+    return new Ticket({
+        _id: attrs.id,
+        title: attrs.title,
+        price: attrs.price
+    });
 };
 
 // A ticket is reserved when an order with the ticket property is the ticket that we found earlier *and* the status of the order is *not* cancelled
