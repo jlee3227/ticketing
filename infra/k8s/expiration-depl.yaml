@@ -1,0 +1,31 @@
+# Deploymenty Configuration for Auth
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiration-depl
+spec:
+  replicas: 1
+  # Find all pods with the label 'app: pods' that the deployment will create
+  selector:
+    matchLabels:
+      app: expiration
+  # How to create each individual pod that the deployment will create
+  template:
+    metadata:
+      labels:
+        app: expiration
+    spec:
+      containers:
+        - name: expiration  # This name is only important for logging purposes
+          image: ejun3227/expiration
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: REDIS_HOST
+              value: expiration-redis-host # comes from the service name of the redis deployment file
