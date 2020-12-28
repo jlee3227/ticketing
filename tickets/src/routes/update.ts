@@ -4,7 +4,8 @@ import {
     validateRequest,
     NotFoundError,
     requireAuth,
-    NotAuthorizedError
+    NotAuthorizedError,
+    BadRequestError
 } from '@ej-tickets/common';
 import { Ticket } from '../models/ticket';
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
@@ -26,6 +27,10 @@ router.put(
         const ticket = await Ticket.findById(req.params.id);
         if (!ticket) {
             throw new NotFoundError();
+        }
+
+        if (ticket.orderId) {
+            throw new BadRequestError('Cannot edit a reserved ticket!');
         }
 
         // Check to see if the User actually owns the Ticket
