@@ -28,4 +28,4 @@ spec:
             - name: NATS_CLUSTER_ID
               value: ticketing
             - name: REDIS_HOST
-              value: expiration-redis-host # comes from the service name of the redis deployment file
+              value: expiration-redis-srv # comes from the service name of the redis deployment file
