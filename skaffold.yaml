@@ -41,3 +41,11 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: ejun3227/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
