@@ -18,8 +18,11 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker push ejun3227/auth
+<<<<<<< HEAD
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kuberetes cluster kubconfig save ticketing
       - run: kubectl rollout restart deployment auth-depl # The name comes from the Kubernetes deployment file (under infra/k8s)
+=======
+>>>>>>> 53ba515f2636f6294e92c3d3eaff59f216cee502
