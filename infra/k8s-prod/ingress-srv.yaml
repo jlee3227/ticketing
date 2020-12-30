@@ -11,9 +11,7 @@ spec:
       http:
         paths:
           - path: /api/users/?(.*)
-            # If a request is made to the cluster and the request path is <host>/<path> then the the request will be sent on to the listed backend.
             backend:
-              # This service name and port comes from the service you created
               serviceName: auth-srv   
               servicePort: 3000
           - path: /api/tickets/?(.*)
