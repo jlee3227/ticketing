@@ -18,7 +18,7 @@ To run the application locally:
 
 -   Change directories to the root of the project
 -   Ensure that you have [ingress-nginx installed](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac) (The Mac instructions work for Windows)
--   Make sure to [create a secret](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret) named `jwt-secret` with a key-value pair of `JWT_KEY=<secret>`
+-   Make sure to [create a secret](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret) named `jwt-secret` with a key-value pair of `JWT_KEY=<secret>` as well as `stripe-secret` with a key-value pair of `STRIPE_KEY=<Stripe API key>`
 -   run `skaffold dev` in your terminal
 
 ## Future Improvements
