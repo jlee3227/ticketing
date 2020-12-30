@@ -4,6 +4,7 @@ deploy:
   kubectl:
     manifests:
       - ./infra/k8s/*
+      - ./infra/k8s-dev/*
 build:
   local:
     push: false   # Don't automatically push images to Docker Hub after they've been built

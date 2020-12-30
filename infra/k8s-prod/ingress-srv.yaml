@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: ticketing.dev   # Made up domain name that will only work locally (after changing the hosts file)
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            # If a request is made to the cluster and the request path is <host>/<path> then the the request will be sent on to the listed backend.
+            backend:
+              # This service name and port comes from the service you created
+              serviceName: auth-srv   
+              servicePort: 3000
+          - path: /api/tickets/?(.*)
+            backend:
+              serviceName: tickets-srv
+              servicePort: 3000
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-srv
+              servicePort: 3000
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-srv
+              servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: client-srv
+              servicePort: 3000
